@@ -332,7 +332,7 @@ ToDoListManager/
 
 ## 👥 Team & Contributions
 
-# BIT PTD-26
+### BIT PTD-26
 
 | Name       | Contribution |
 |------------|--------------|
