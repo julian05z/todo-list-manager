@@ -202,6 +202,65 @@ The goal is to help students organize their daily tasks and school assignments m
 
 ---
 
+#### 🔍 User Story 10 – Search by Keyword
+
+**As a** student,
+**I want** to search my tasks by entering a keyword,
+**so that** I can quickly find a specific task without scrolling through the whole list.
+
+**✔️ Acceptance Criteria 1**
+- *Given* the task list contains the tasks "Study for programming exam", "Buy groceries" and "Programming homework",
+- *When* the student searches for the keyword "programming",
+- *Then* only the two tasks containing "programming" are displayed, regardless of upper or lower case.
+
+**✔️ Acceptance Criteria 2**
+- *Given* the task list contains no task matching the keyword,
+- *When* the student searches for "biology",
+- *Then* the system displays a message that no matching tasks were found.
+
+---
+
+#### ⏰ User Story 11 – Overdue and Upcoming Deadlines
+
+**As a** student,
+**I want** to be warned about overdue tasks and tasks due soon when I start the program,
+**so that** I don't miss any deadlines.
+
+**✔️ Acceptance Criteria 1**
+- *Given* the task list contains an incomplete task whose deadline has already passed,
+- *When* the student starts the To-Do List Manager,
+- *Then* the system displays a warning listing this task as "Overdue".
+
+**✔️ Acceptance Criteria 2**
+- *Given* the task list contains an incomplete task with a deadline within the next 3 days,
+- *When* the student starts the To-Do List Manager,
+- *Then* the system displays this task as "Due soon".
+
+**✔️ Acceptance Criteria 3**
+- *Given* a task with a past deadline is already marked as completed,
+- *When* the student starts the To-Do List Manager,
+- *Then* the task is not shown as overdue.
+
+---
+
+#### 📊 User Story 12 – Progress Overview
+
+**As a** student,
+**I want** to see a summary of my completed and open tasks,
+**so that** I can track my progress and stay motivated.
+
+**✔️ Acceptance Criteria 1**
+- *Given* the task list contains 2 completed and 3 incomplete tasks,
+- *When* the student selects the option "Show progress",
+- *Then* the system displays "2 of 5 tasks completed (40%)".
+
+**✔️ Acceptance Criteria 2**
+- *Given* the task list is empty,
+- *When* the student selects the option "Show progress",
+- *Then* the system displays a message that there are no tasks yet instead of an error.
+
+---
+
 **🧩 Use cases:**
 - 
 
