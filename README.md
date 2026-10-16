@@ -266,6 +266,7 @@ The goal is to help students organize their daily tasks and school assignments m
 
 ---
 ## ⚙️ Control Flow Logic
+Our control flow logic for the ToDo List Manager is as follows:
 
 
 ---
