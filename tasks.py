@@ -18,6 +18,11 @@ def add_task(task_list, description, deadline, priority, category, notes):
     }
     task_list.append(new_task)
 
+# Define function for editing a existing task
+
+def edit_task(task_list, index, field, new_value):
+    task_list[index][field] = new_value
+
 # Define function for setting task status to complete
 
 def complete_task(task_list, index):
@@ -28,3 +33,4 @@ def complete_task(task_list, index):
 def remove_task(task_list, index):
     removed_task = task_list.pop(index)
     return removed_task
+
