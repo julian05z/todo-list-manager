@@ -18,7 +18,7 @@ def add_task(task_list, description, deadline, priority, category, notes):
     }
     task_list.append(new_task)
 
-# Define function for editing a existing task
+# Define function for editing an existing task
 
 def edit_task(task_list, index, field, new_value):
     task_list[index][field] = new_value
