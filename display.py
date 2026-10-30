@@ -53,16 +53,23 @@ def filter_priority(task_list):
 
 
 def filter_category(task_list):
-    wanted = input("Filter by category: ").lower()
+    categories = set()
 
-    for task in task_list:
-        if task["category"] == wanted:
-            print(task)
+    for task in task_list:  
+        categories.add((task["category"]).lower())
 
-test_tasks = [
-    {"description": "A", "deadline": "01.11.2026", "priority": "High", "category": "Math", "note": "", "is_complete": False},
-    {"description": "B", "deadline": "02.11.2026", "priority": "Low", "category": "Math", "note": "", "is_complete": True},
-    {"description": "C", "deadline": "03.11.2026", "priority": "Medium", "category": "Programming", "note": "", "is_complete": False},
-]
+    while True:
+        print("Available Categories:", ", ".join(categories))
+        wanted = input("Filter by category: ").lower().strip()
+        
+        if wanted in categories:
+            for task in task_list:
+                if task["category"].lower() == wanted:
+                    print(task)
+            break
+        else:
+            print("Wrong input please try again.")
 
-filter_priority(test_tasks)
+
+
+

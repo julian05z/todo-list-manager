@@ -1,7 +1,7 @@
 ##IMPORT YOUR FUNCTIONS HERE##
 from storage import load_tasks, save_tasks
 from tasks import add_task, edit_task, complete_task, remove_task
-from display import view_tasks
+from display import view_tasks, filter_completion, filter_priority, filter_category
 from validation import get_task_index
 
 tasks = load_tasks()
@@ -63,7 +63,33 @@ while True:
             print("Task removed: " + removed_task["description"])
         else:
             print("There aren't any tasks yet.")     
-   
+    
+    elif choice == "6":
+        if len(tasks) != 0:
+            while True:
+                print("""
+1. Filter by status
+2. Filter by priority
+3. Filter by category
+                """)
+                selected_filter = input("By what would you like to filter? (1/2/3): ")
+                          
+                if selected_filter == "1":
+                    filter_completion(tasks)
+                    break
+                elif selected_filter == "2":
+                    filter_priority(tasks)
+                    break
+                elif selected_filter == "3":
+                    filter_category(tasks)
+                    break
+                else:
+                    print("Wrong input please try again.")
+        else:
+            print("There aren't any tasks yet.")
+
+
+
     elif choice in ["3", "6", "7", "8"]:
         print("Coming soon.")
     
