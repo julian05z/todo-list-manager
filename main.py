@@ -1,7 +1,7 @@
 ##IMPORT YOUR FUNCTIONS HERE##
 from storage import load_tasks, save_tasks
 from tasks import add_task, edit_task, complete_task, remove_task
-from display import view_tasks
+from display import view_tasks, filter_completion, filter_priority, filter_category
 from validation import get_task_index
 
 import os #for clearing menu
@@ -54,7 +54,11 @@ while True:
    
     elif choice == "2":
         view_tasks(tasks)
-    
+
+    elif choice == "3":
+        edit_task(tasks)
+        save_tasks(tasks)
+        
     elif choice == "4":
         if len(tasks) != 0:
             view_tasks(tasks)
@@ -80,8 +84,37 @@ while True:
                 print("Task removed: " + removed_task["description"])
         else:
             print("There aren't any tasks yet.")     
-   
-    elif choice in ["3", "6", "7", "8"]:
+    
+    # Menu option 6: filter tasks
+    elif choice == "6":
+        # Only offer filters if there is at least one task
+        if len(tasks) != 0:
+            # Ask until the user picks a valid filter 
+            while True:
+                print("""
+1. Filter by status
+2. Filter by priority
+3. Filter by category
+                """)
+                selected_filter = input("By what would you like to filter? (1/2/3): ")
+                
+                # Call the matching filter function, then leave the loop                         
+                if selected_filter == "1":
+                    filter_completion(tasks)
+                    break
+                elif selected_filter == "2":
+                    filter_priority(tasks)
+                    break
+                elif selected_filter == "3":
+                    filter_category(tasks)
+                    break
+                else:
+                    print("Wrong input please try again.")
+        else:
+            print("There aren't any tasks yet.")
+
+
+    elif choice in ["6", "7", "8"]:
         print("Coming soon.")
     
     elif choice == "0":
