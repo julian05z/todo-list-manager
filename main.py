@@ -43,7 +43,11 @@ while True:
    
     elif choice == "2":
         view_tasks(tasks)
-    
+
+    elif choice == "3":
+        edit_task(tasks)
+        save_tasks(tasks)
+        
     elif choice == "4":
         if len(tasks) != 0:
             view_tasks(tasks)
@@ -64,7 +68,7 @@ while True:
         else:
             print("There aren't any tasks yet.")     
    
-    elif choice in ["3", "6", "7", "8"]:
+    elif choice in ["6", "7", "8"]:
         print("Coming soon.")
     
     elif choice == "0":
