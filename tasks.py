@@ -1,3 +1,6 @@
+from display import view_tasks
+from validation import get_task_index
+
 # EXAMPLE OF TASK FORMAT
 #
 # tasks = [
@@ -21,15 +24,14 @@ def add_task(task_list, description, deadline, priority, category, notes):
 # Define function for editing an existing task
 
 def edit_task(task_list):
+    if len(task_list) == 0:
+        print("There are no tasks to edit")
+        return
     # View tasks 
-    number = 1
-    for task in task_list:
-        print(f"{number}. {task['description']}")
-        number = number + 1
+    view_tasks(task_list)
     
     # Choose a task
-    task_choice = int(input("Which task do you want to edit?"))
-    index = task_choice - 1
+    index = get_task_index(task_list)
     
     # Choose a field
     print("1. Description")
@@ -38,21 +40,26 @@ def edit_task(task_list):
     print("4. Category")
     print("5. Notes")
     
-    field_choice = input("Which field do you want to edit?")
+    while True:
+        field_choice = input("Which field do you want to edit?")
     
-    if field_choice == "1":
-        field = "description"
-    elif field_choice == "2":
-        field = "deadline"
-    elif field_choice == "3":
-        field = "priority"
-    elif field_choice == "4":
-        field = "category"
-    elif field_choice == "5":
-        field = "notes"
-    else:
-        print("Please choose a valid field.")
-        return
+        if field_choice == "1":
+            field = "description"
+            break
+        elif field_choice == "2":
+            field = "deadline"
+            break
+        elif field_choice == "3":
+            field = "priority"
+            break
+        elif field_choice == "4":
+            field = "category"
+            break
+        elif field_choice == "5":
+            field = "notes"
+            break
+        else:
+            print("Please choose a valid field.")
 
     # Edit your field
     new_value = input("Enter the new value: ")
@@ -69,3 +76,4 @@ def complete_task(task_list, index):
 def remove_task(task_list, index):
     removed_task = task_list.pop(index)
     return removed_task
+
