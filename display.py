@@ -15,10 +15,16 @@ def view_tasks(task_list):
             print(f"{task_number}. {task['description']} | Deadline: {task['deadline']} | Status: {status}") # print all existing tasks in agreed upon format
 
 
+# Define functions for filtering by completion status
+
 def filter_completion(task_list):
+    # Ask until the user enters a valid completion status
     while True:
         wanted = input("Filter by completion (Open/Finished): ").strip().lower()
+
+        # Assign correct value based on user input
         if wanted == "open":
+            # open tasks have is_complete = False
             status = False
             break
         elif wanted == "finished":
@@ -27,14 +33,20 @@ def filter_completion(task_list):
         else:
             print("Wrong input please try again.")
 
+    # Print only the tasks with the chosen status
     for task in task_list:
         if task["is_complete"] == status:
             print(task)
 
 
+# Define functions for filtering by priority
+
 def filter_priority(task_list):
+    # Ask until the user enters a valid priority
     while True:
         wanted = input("Filter by priority (High/Medium/Low): ").strip().lower()
+        
+        # Assign correct value based on user input
         if wanted == "high":
             priority = "High"
             break
@@ -47,29 +59,32 @@ def filter_priority(task_list):
         else:
             print("Wrong input please try again.")
 
+    # Print only the tasks with the chosen priority
     for task in task_list:
         if task["priority"] == priority:
             print(task)
 
 
+# Define functions for filtering by category
+
 def filter_category(task_list):
+    # Collect every existing category once
     categories = set()
 
+    # Save all categories inside the set
     for task in task_list:  
         categories.add((task["category"]).lower())
 
+    # Ask until the user enters a category that exists
     while True:
         print("Available Categories:", ", ".join(categories))
         wanted = input("Filter by category: ").lower().strip()
         
         if wanted in categories:
+            # Compare User input to task list and print the according tasks
             for task in task_list:
                 if task["category"].lower() == wanted:
                     print(task)
             break
         else:
-            print("Wrong input please try again.")
-
-
-
-
+            print("That's not a valid category, please try again.")

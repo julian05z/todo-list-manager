@@ -67,9 +67,12 @@ while True:
             print("Task removed: " + removed_task["description"])
         else:
             print("There aren't any tasks yet.")     
-
+    
+    # Menu option 6: filter tasks
     elif choice == "6":
+        # Only offer filters if there is at least one task
         if len(tasks) != 0:
+            # Ask until the user picks a valid filter 
             while True:
                 print("""
 1. Filter by status
@@ -77,7 +80,8 @@ while True:
 3. Filter by category
                 """)
                 selected_filter = input("By what would you like to filter? (1/2/3): ")
-                          
+                
+                # Call the matching filter function, then leave the loop                         
                 if selected_filter == "1":
                     filter_completion(tasks)
                     break
@@ -91,6 +95,7 @@ while True:
                     print("Wrong input please try again.")
         else:
             print("There aren't any tasks yet.")
+
 
     elif choice in ["6", "7", "8"]:
         print("Coming soon.")
