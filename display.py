@@ -4,7 +4,7 @@
 
 def view_tasks(task_list):
     if len(task_list) == 0: # check if task list is empty
-        print("No tasks yet")
+        print("There aren't any tasks yet.")
         return
     else:
         for task_number, task in enumerate(task_list, start=1): # enumerate goes through the list and gives the task with its position - instead of a manual counter variable
