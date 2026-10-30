@@ -69,3 +69,4 @@ def complete_task(task_list, index):
 def remove_task(task_list, index):
     removed_task = task_list.pop(index)
     return removed_task
+

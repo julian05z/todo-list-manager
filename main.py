@@ -5,6 +5,7 @@ from display import view_tasks
 from validation import get_task_index
 
 tasks = load_tasks()
+view_tasks(tasks)
 
 while True:
     
@@ -23,17 +24,52 @@ while True:
     choice = input("Choose an option: ")
 
     if choice == "1":
-        print("Coming soon.")
+        
+        description = input("Write a description for your task: ")
+        
+        deadline = input("When is the task due? (DD.MM.YYYY): ")
+       
+        priority = input("Write the priority for this task (High, Medium, Low): ")
+       
+        category = input("What is the category of this task?: ")
+       
+        notes = input("Add any extra notes to this task (optional): ")
+        
+        add_task(tasks, description, deadline, priority, category, notes)
+        
+        save_tasks(tasks)
+
+        print(f"Task added: {description} (due {deadline})")
+   
     elif choice == "2":
-        print("Coming soon.")
+        view_tasks(tasks)
+    
     elif choice == "4":
-        print("Coming soon.")
+        if len(tasks) != 0:
+            view_tasks(tasks)
+            chosen_task = get_task_index(tasks)
+            complete_task(tasks, chosen_task)
+            save_tasks(tasks)
+            print("Task completed: " + tasks[chosen_task]["description"])
+        else:
+            print("There aren't any tasks yet.")
+    
     elif choice == "5":
-        print("Coming soon.")
+        if len(tasks) != 0:
+            view_tasks(tasks)
+            chosen_task = get_task_index(tasks)
+            removed_task = remove_task(tasks, chosen_task)
+            save_tasks(tasks)
+            print("Task removed: " + removed_task["description"])
+        else:
+            print("There aren't any tasks yet.")     
+   
     elif choice in ["3", "6", "7", "8"]:
         print("Coming soon.")
+    
     elif choice == "0":
         print("Goodbye!")
         break
+   
     else:
         print("That wasn't a valid choice. Please enter a number between 0 and 8")
