@@ -114,7 +114,7 @@ while True:
             print("There aren't any tasks yet.")
 
 
-    elif choice in ["6", "7", "8"]:
+    elif choice in ["7", "8"]:
         print("Coming soon.")
     
     elif choice == "0":
