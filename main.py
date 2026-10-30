@@ -4,12 +4,21 @@ from tasks import add_task, edit_task, complete_task, remove_task
 from display import view_tasks
 from validation import get_task_index
 
+import os #for clearing menu
+
+def clear_screen():
+    if os.name == "nt":
+        os.system("cls")
+    else:
+        os.system("clear")
+
 tasks = load_tasks()
 view_tasks(tasks)
 
 while True:
     
     print("""
+===== ToDo List Manager =====
 1. Add task
 2. View tasks
 3. Edit task
@@ -22,6 +31,8 @@ while True:
     """)
 
     choice = input("Choose an option: ")
+
+    clear_screen()
 
     if choice == "1":
         
@@ -48,9 +59,12 @@ while True:
         if len(tasks) != 0:
             view_tasks(tasks)
             chosen_task = get_task_index(tasks)
-            complete_task(tasks, chosen_task)
-            save_tasks(tasks)
-            print("Task completed: " + tasks[chosen_task]["description"])
+            if chosen_task is None:
+                print("Cancelled.")
+            else:
+                complete_task(tasks, chosen_task)
+                save_tasks(tasks)
+                print("Task completed: " + tasks[chosen_task]["description"])
         else:
             print("There aren't any tasks yet.")
     
@@ -58,9 +72,12 @@ while True:
         if len(tasks) != 0:
             view_tasks(tasks)
             chosen_task = get_task_index(tasks)
-            removed_task = remove_task(tasks, chosen_task)
-            save_tasks(tasks)
-            print("Task removed: " + removed_task["description"])
+            if chosen_task is None:
+                print("Cancelled.")
+            else:
+                removed_task = remove_task(tasks, chosen_task)
+                save_tasks(tasks)
+                print("Task removed: " + removed_task["description"])
         else:
             print("There aren't any tasks yet.")     
    
