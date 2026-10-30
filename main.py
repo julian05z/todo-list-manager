@@ -68,7 +68,30 @@ while True:
         else:
             print("There aren't any tasks yet.")     
 
-   
+    elif choice == "6":
+        if len(tasks) != 0:
+            while True:
+                print("""
+1. Filter by status
+2. Filter by priority
+3. Filter by category
+                """)
+                selected_filter = input("By what would you like to filter? (1/2/3): ")
+                          
+                if selected_filter == "1":
+                    filter_completion(tasks)
+                    break
+                elif selected_filter == "2":
+                    filter_priority(tasks)
+                    break
+                elif selected_filter == "3":
+                    filter_category(tasks)
+                    break
+                else:
+                    print("Wrong input please try again.")
+        else:
+            print("There aren't any tasks yet.")
+
     elif choice in ["6", "7", "8"]:
         print("Coming soon.")
     
