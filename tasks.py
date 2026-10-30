@@ -69,29 +69,3 @@ def complete_task(task_list, index):
 def remove_task(task_list, index):
     removed_task = task_list.pop(index)
     return removed_task
-
-
-if __name__ == "__main__":
-    tasks = [
-        {
-            "description": "Study Python",
-            "notes": "",
-            "deadline": "05.11.2026",
-            "priority": "High",
-            "category": "Programming",
-            "is_complete": False
-        },
-        {
-            "description": "Finish statistics",
-            "notes": "Chapter 3",
-            "deadline": "08.11.2026",
-            "priority": "Medium",
-            "category": "Statistics",
-            "is_complete": False
-        }
-    ]
-
-    print("Before:")
-    print(tasks)
-
-    edit_task(tasks)
