@@ -12,7 +12,7 @@ def view_tasks(task_list):
                 status = "Finished"
             else:
                 status = "Open"
-            print(f"{task_number}. {task['description']} | Deadline: {task['deadline']} | Status: {status}") # print all existing tasks in agreed upon format
+            print(f"{task_number}. {task['description']} | Deadline: {task['deadline']} | Category: {task['category']} | Notes: {task['notes']} | Status: {status}") # print all existing tasks in agreed upon format
 
 
 # Define functions for filtering by completion status
