@@ -32,6 +32,9 @@ def edit_task(task_list):
     
     # Choose a task
     index = get_task_index(task_list)
+    if index is None:
+        print("Cancelled.")
+        return
     
     # Choose a field
     print("1. Description")
