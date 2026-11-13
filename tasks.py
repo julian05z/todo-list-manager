@@ -1,5 +1,5 @@
 from display import view_tasks
-from validation import get_task_index
+from validation import ask_description, ask_deadline, ask_priority, ask_category, get_task_index
 
 # EXAMPLE OF TASK FORMAT
 #
@@ -44,7 +44,7 @@ def edit_task(task_list):
     print("5. Notes")
     
     while True:
-        field_choice = input("Which field do you want to edit?")
+        field_choice = input("Which field do you want to edit?: ")
     
         if field_choice == "1":
             field = "description"
@@ -64,10 +64,21 @@ def edit_task(task_list):
         else:
             print("Please choose a valid field.")
 
-    # Edit your field
-    new_value = input("Enter the new value: ")
+    # Edit your field - Check user input with according validation function
+    if field ==  "description":
+        new_value = ask_description()
+    elif field == "deadline":
+        new_value = ask_deadline()
+    elif field == "priority":
+        new_value = ask_priority()
+    elif field == "category":
+        new_value = ask_category()
+    else:
+        new_value = input("Enter the new note: ")
+
     task_list[index][field] = new_value
     print(f"{field} was changed to {new_value}.")
+
 
 # Define function for setting task status to complete
 

@@ -2,7 +2,7 @@
 from storage import load_tasks, save_tasks
 from tasks import add_task, edit_task, complete_task, remove_task
 from display import view_tasks, filter_completion, filter_priority, filter_category
-from validation import get_task_index
+from validation import ask_description, ask_deadline, ask_priority, ask_category, get_task_index
 
 import os #for clearing menu
 
@@ -36,13 +36,13 @@ while True:
 
     if choice == "1":
         
-        description = input("Write a description for your task: ")
+        description = ask_description()
         
-        deadline = input("When is the task due? (DD.MM.YYYY): ")
+        deadline = ask_deadline()
        
-        priority = input("Write the priority for this task (High, Medium, Low): ")
+        priority = ask_priority()
        
-        category = input("What is the category of this task?: ")
+        category = ask_category()
        
         notes = input("Add any extra notes to this task (optional): ")
         
