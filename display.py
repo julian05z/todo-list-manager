@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta # used for comparing deadlines with today's date
+
 # Task format - 1. 'Description' | Deadline: 'date' | Status: 'state'
 
 # Define function for viewing tasks 
@@ -116,3 +118,25 @@ def search_tasks(task_list):
 
     if not found:
         print(f"No matching tasks found for '{keyword}'.")
+
+
+# Define function for warning about overdue tasks and tasks that are due soon
+
+def show_deadline_warnings(task_list):
+    today = datetime.today().date() # only the date, without the time
+    soon = today + timedelta(days=3) # timedelta adds 3 days to today's date
+
+    for task in task_list:
+        if task["is_complete"]: # finished tasks don't need a warning
+            continue
+
+        # strptime turns the text "DD.MM.YYYY" into a real date we can compare
+        try:
+            deadline = datetime.strptime(task["deadline"], "%d.%m.%Y").date()
+        except ValueError: # dates like 31.02.2026 can't be converted, so skip them
+            continue
+
+        if deadline < today:
+            print(f"Overdue: {task['description']} (was due {task['deadline']})")
+        elif deadline <= soon:
+            print(f"Due soon: {task['description']} (due {task['deadline']})")
