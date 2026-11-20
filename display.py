@@ -140,3 +140,21 @@ def show_deadline_warnings(task_list):
             print(f"Overdue: {task['description']} (was due {task['deadline']})")
         elif deadline <= soon:
             print(f"Due soon: {task['description']} (due {task['deadline']})")
+
+
+# Define function for showing how many tasks are completed
+
+def show_progress(task_list):
+    if len(task_list) == 0: # avoid dividing by zero when there are no tasks
+        print("There aren't any tasks yet.")
+        return
+
+    # Count the completed tasks
+    done = 0
+    for task in task_list:
+        if task["is_complete"]:
+            done = done + 1
+
+    total = len(task_list)
+    percent = done / total * 100
+    print(f"{done} of {total} tasks completed ({percent:.0f}%)") # :.0f rounds to a whole number
