@@ -1,7 +1,7 @@
 ##IMPORT YOUR FUNCTIONS HERE##
 from storage import load_tasks, save_tasks
 from tasks import add_task, edit_task, complete_task, remove_task
-from display import view_tasks, filter_completion, filter_priority, filter_category
+from display import view_tasks, filter_completion, filter_priority, filter_category, search_tasks
 from validation import ask_description, ask_deadline, ask_priority, ask_category, get_task_index
 
 import os #for clearing menu
@@ -114,7 +114,10 @@ while True:
             print("There aren't any tasks yet.")
 
 
-    elif choice in ["7", "8"]:
+    elif choice == "7":
+        search_tasks(tasks)
+
+    elif choice == "8":
         print("Coming soon.")
     
     elif choice == "0":

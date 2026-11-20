@@ -88,3 +88,31 @@ def filter_category(task_list):
             break
         else:
             print("That's not a valid category, please try again.")
+
+
+# Define function for searching tasks by keyword
+
+def search_tasks(task_list):
+    if len(task_list) == 0: # nothing to search in
+        print("There aren't any tasks yet.")
+        return
+
+    # Ask until the user enters a keyword that isn't empty
+    keyword = input("Search for a keyword: ").strip()
+    while len(keyword) == 0:
+        print("The keyword is empty.")
+        keyword = input("Please enter a keyword to search for: ").strip()
+
+    # Compare in lowercase so "programming" also finds "Programming"
+    found = False
+    for task_number, task in enumerate(task_list, start=1): # keep the original number so it matches "View tasks"
+        if keyword.lower() in task["description"].lower():
+            if task["is_complete"]:
+                status = "Finished"
+            else:
+                status = "Open"
+            print(f"{task_number}. {task['description']} | Deadline: {task['deadline']} | Category: {task['category']} | Notes: {task['notes']} | Status: {status}")
+            found = True
+
+    if not found:
+        print(f"No matching tasks found for '{keyword}'.")
