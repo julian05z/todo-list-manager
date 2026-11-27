@@ -39,7 +39,11 @@ def filter_completion(task_list):
     found = False
     for task in task_list:
         if task["is_complete"] == status:
-            print(task)
+            if task["is_complete"]:
+                status_text = "Finished"
+            else:
+                status_text = "Open"
+            print(f"{task['description']} | Deadline: {task['deadline']} | Category: {task['category']} | Notes: {task['notes']} | Status: {status_text}")
             found = True
 
     if not found:
@@ -70,7 +74,11 @@ def filter_priority(task_list):
     found = False
     for task in task_list:
         if task["priority"] == priority:
-            print(task)
+            if task["is_complete"]:
+                status = "Finished"
+            else:
+                status = "Open"
+            print(f"{task['description']} | Deadline: {task['deadline']} | Category: {task['category']} | Notes: {task['notes']} | Status: {status}")
             found = True
 
     if not found:
@@ -96,7 +104,11 @@ def filter_category(task_list):
             # Compare User input to task list and print the according tasks
             for task in task_list:
                 if task["category"].lower() == wanted:
-                    print(task)
+                    if task["is_complete"]:
+                        status = "Finished"
+                    else:
+                        status = "Open"
+                    print(f"{task['description']} | Deadline: {task['deadline']} | Category: {task['category']} | Notes: {task['notes']} | Status: {status}")
             break
         else:
             print("That's not a valid category, please try again.")
