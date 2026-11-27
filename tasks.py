@@ -1,5 +1,6 @@
-from display import view_tasks
-from validation import ask_description, ask_deadline, ask_priority, ask_category, get_task_index
+# Import the needed functions for editing tasks
+from display import view_tasks 
+from validation import ask_description, ask_deadline, ask_priority, ask_category, get_task_index 
 
 # EXAMPLE OF TASK FORMAT
 #
@@ -21,12 +22,14 @@ def add_task(task_list, description, deadline, priority, category, notes):
     }
     task_list.append(new_task)
 
+
 # Define function for editing an existing task
 
-def edit_task(task_list):
-    if len(task_list) == 0:
+def edit_task(task_list): 
+    if len(task_list) == 0: # If there are no tasks, there is nothing to edit
         print("There are no tasks to edit")
-        return
+        return # leave the function
+    
     # View tasks 
     view_tasks(task_list)
     
@@ -85,9 +88,9 @@ def edit_task(task_list):
 def complete_task(task_list, index):
     task_list[index]['is_complete'] = True
 
+
 # Define function for removing tasks from the list - return removed_task for message in main.py
 
 def remove_task(task_list, index):
     removed_task = task_list.pop(index)
     return removed_task
-
