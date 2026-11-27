@@ -36,9 +36,14 @@ def filter_completion(task_list):
             print("Wrong input please try again.")
 
     # Print only the tasks with the chosen status
+    found = False
     for task in task_list:
         if task["is_complete"] == status:
             print(task)
+            found = True
+
+    if not found:
+        print("No task available with this status.")
 
 
 # Define functions for filtering by priority
@@ -62,9 +67,14 @@ def filter_priority(task_list):
             print("Wrong input please try again.")
 
     # Print only the tasks with the chosen priority
+    found = False
     for task in task_list:
         if task["priority"] == priority:
             print(task)
+            found = True
+
+    if not found:
+        print("No task available with this priority.")
 
 
 # Define functions for filtering by category
@@ -90,6 +100,31 @@ def filter_category(task_list):
             break
         else:
             print("That's not a valid category, please try again.")
+
+
+# Define function for the filter menu
+
+def filter_menu(task_list):
+    # Ask until the user picks a valid filter
+    while True:
+        print("""
+1. Filter by status
+2. Filter by priority
+3. Filter by category
+        """)
+        selected_filter = input("By what would you like to filter? (1/2/3): ")
+
+        if selected_filter == "1":
+            filter_completion(task_list)
+            break
+        elif selected_filter == "2":
+            filter_priority(task_list)
+            break
+        elif selected_filter == "3":
+            filter_category(task_list)
+            break
+        else:
+            print("Wrong input please try again.")
 
 
 # Define function for searching tasks by keyword

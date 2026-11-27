@@ -31,6 +31,9 @@ def ask_description():
 # Define functions for checking valid deadline user input
 
 def ask_deadline():
+    # Number of days in each month (February at 28, leap year is handled below)
+    days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
     # Ask until the user enters a valid date
     while True:
         
@@ -52,6 +55,10 @@ def ask_deadline():
             and year.isdigit()
             and 1 <= int(day) <= 31
             and 1 <= int(month) <= 12
+            and (
+                int(day) <= days_in_month[int(month) - 1] # day must exist in that month
+                or (int(month) == 2 and int(day) == 29 and int(year) % 4 == 0) # 29.02. only in leap years
+            )
             ):
             return deadline
         else:
