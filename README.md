@@ -1,6 +1,6 @@
 # ✅ ToDo List Manager
 
-## 📝 Analysis
+## 💡 Problem & Goal
 
 **❗ Problem**
 
@@ -9,6 +9,8 @@ Students have many things to do, such as school assignments and daily tasks, whi
 **🎯 Goal**
 
 The goal is to help students organize their daily tasks and school assignments more easily. The ToDo List Manager allows students to create tasks, set priorities, and filter tasks so they can find important tasks faster and better organize their work.
+
+## 📝 Analysis
 
 ### 👤 User Roles
 
@@ -264,79 +266,115 @@ The goal is to help students organize their daily tasks and school assignments m
 - *When* the student selects the option "Show progress",
 - *Then* the system displays a message that there are no tasks yet instead of an error.
 
----
-## ⚙️ Control Flow Logic
+## 🕹️ Main Functionality
+
+The ToDo List Manager is a console application that helps students organise their tasks.
+
+When the program starts, it loads all saved tasks from `tasks.json`, shows the task list and warns about tasks that are overdue or due within the next 3 days.
+
+After that, a menu is shown where the user can:
+
+1. **Add a task** with a description, deadline, priority, category and optional notes
+2. **View all tasks** with their details and status
+3. **Edit a task**, for example to change its deadline or notes
+4. **Mark a task as completed**
+5. **Remove a task** that is no longer needed
+6. **Filter tasks** by status, priority or category
+7. **Search tasks** by a keyword
+8. **Show progress**, meaning how many tasks are already completed
+
+<!-- -->
+
+0. **Exit** the program
+
+All user input is checked, so empty descriptions, wrong date formats or invalid task numbers are rejected. Every change is saved to `tasks.json` right away, so no tasks are lost when the program is closed.
+
+### ⚙️ Control Flow Logic
 Our control flow logic for the ToDo List Manager is as follows:
 
-<img src="control%20flow%20logic.png" alt="Control Flow Logic" width="500">
-
-
----
-
-
-**🧩 Use cases:**
-- 
-
----
+<img src="docs/control%20flow%20logic.png" alt="Control Flow Logic" width="500">
 
 ## ✅ Project Requirements
 
-Each app must meet the following three criteria in order to be accepted (see also the official project guidelines PDF on Moodle):
+The app meets the three required criteria:
 
 1. Interactive app (console input)
 2. Data validation (input checking)
 3. File processing (read/write)
 
----
-
 ### 1. 💻 Interactive App (Console Input)
-
-The application interacts with the user via the console. Users can:
-- 
-
----
+The user controls the app through a console menu and can add, view, edit, complete, remove, filter and search tasks, as well as see their progress.
 
 ### 2. 🛡️ Data Validation
-
-The application validates all user input to ensure data integrity and a smooth user experience:
-
-- 
-
----
+All input is checked in `validation.py` and `main.py`:
+- Descriptions can't be empty
+- Deadlines must use the format DD.MM.YYYY
+- Priority must be High, Medium or Low
+- Task numbers must exist (0 cancels)
+- Invalid menu choices show an error and the menu appears again
 
 ### 3. 📁 File Processing
+Tasks are stored in `tasks.json` (`storage.py`):
+- **📥 Read:** at startup, tasks are loaded from the file (an empty file is created if none exists)
+- **📤 Write:** every change is saved to the file right away
 
-The application reads and writes data using files:
-
-- **📥 Input file:** 
-- **📤 Output file:** 
+Example of one saved task in `tasks.json`:
+```json
+[
+  {
+    "description": "Programming homework",
+    "notes": "Review loops",
+    "deadline": "05.12.2026",
+    "priority": "High",
+    "category": "Programming",
+    "is_complete": false
+  }
+]
+```
 
 ## ⚙️ Implementation
 
 ### 🐍 Technology
 - Python 3.x
-- Environment: GitHub Codespaces
+- Environment: Visual Studio Code (local)
 - No external libraries
 
-### 📂 Repository Structure
+### 📂 Project Structure
+
 ```text
 ToDoListManager/
-├── main.py             # main program logic (console application)
-├── docs/               # optional screenshots or project documentation
-└── README.md           # project description and milestones
+├── main.py                    # main program logic (console application)
+├── tasks.py                   # creating and editing tasks (add_task, edit_task, complete_task, remove_task)
+├── validation.py              # input validation (get_task_index, ask_description, ask_deadline, ask_priority, ask_category)
+├── storage.py                 # saving and loading tasks (save_tasks, load_tasks)
+├── display.py                 # displaying tasks and the progress overview (view_tasks, filter_completion, filter_priority, filter_category, search_tasks, show_deadline_warnings, show_progress)
+├── tasks.json                 # task data, created automatically on first start (listed in .gitignore)
+├── docs/                      # documentation, not needed to run the program
+│   └── control flow logic.png # control flow diagram used in this README
+└── README.md                  # project description and documentation
 ```
 
 ### ▶️ How to Run
-1. Open the repository in **GitHub Codespaces**
-2. Open the **Terminal**
-3. Run:
+1. Clone the repository to your device:
 ```bash
-	python3 main.py
+git clone https://github.com/julian05z/todo-list-manager.git
 ```
+2. Open the Terminal and go into the project folder:
+```bash
+cd todo-list-manager
+```
+3. Start the program:
+```bash
+python3 main.py
+```
+On Windows, use `python main.py` or `py main.py` instead.
 
 ### 📚 Libraries Used
+- `json`: Used in `storage.py` to save the task list to `tasks.json` and load it again when the program starts.
+- `datetime`: Used in `display.py` (`datetime` and `timedelta`) to compare deadlines with today's date and find tasks that are overdue or due within the next 3 days.
+- `os`: Used in `main.py` to clear the console screen (`cls` on Windows, `clear` on macOS/Linux) so the menu stays easy to read.
 
-- 
+These libraries are part of the Python standard library, so no external installation is required. They were chosen because they are simple and cover everything the app needs: saving data, working with dates and keeping the console clean.
 
 ## 👥 Team & Contributions
 
@@ -344,7 +382,7 @@ ToDoListManager/
 
 | Name       | Contribution |
 |------------|--------------|
-| Milos Dumitrovic     |              |
-| Julian Zurkinden    |              |
-| Fabio Rubin     |              |
-| Mateja Dimitrijevic     |              |
+| Mateja Dimitrijevic | User Stories 1, 2, 3: Add and View Tasks, Complete and Remove Tasks, Save and Load Tasks |
+| Milos Dumitrovic | User Stories 4, 7, 8: Edit a task, Category / Subject Assignment, Notes |
+| Fabio Rubin | User Stories 5, 6, 9: Data Validation, Priority, Filter |
+| Julian Zurkinden | User Stories 10, 11, 12: Search by Keyword, Overdue and Upcoming Deadlines, Progress Overview |
